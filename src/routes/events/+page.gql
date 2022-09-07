@@ -1,0 +1,22 @@
+query Events {
+	events {
+		data {
+			attributes {
+				title
+				subtitle
+				start
+				desc
+				end
+				slug
+				cover {
+					data {
+						attributes {
+							url
+							previewUrl
+						}
+					}
+				}
+			}
+		}
+	}
+}

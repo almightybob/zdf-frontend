@@ -1,0 +1,59 @@
+query Event($slug: String!) {
+	event(slug: $slug) {
+		data {
+			attributes {
+				title
+				subtitle
+				start
+				end
+				desc
+				cover {
+					data {
+						attributes {
+							url
+						}
+					}
+				}
+				content {
+					header
+					content
+					media {
+						data {
+							attributes {
+								url
+							}
+						}
+					}
+				}
+				links {
+					url
+					plattform
+				}
+				gallery {
+					data {
+						attributes {
+							url
+						}
+					}
+				}
+				humans {
+					data {
+						attributes {
+							slug
+							name
+							position
+							bio
+							avatar {
+								data {
+									attributes {
+										url
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

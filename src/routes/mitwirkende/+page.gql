@@ -1,0 +1,19 @@
+query Humans {
+	humans {
+		data {
+			attributes {
+				name
+				position
+				slug
+				avatar {
+					data {
+						attributes {
+							url
+							previewUrl
+						}
+					}
+				}
+			}
+		}
+	}
+}

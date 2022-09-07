@@ -1,0 +1,39 @@
+query Human($slug: String!) {
+	human(slug: $slug) {
+		data {
+			attributes {
+				name
+				bio
+				slug
+				avatar {
+					data {
+						attributes {
+							url
+						}
+					}
+				}
+				events {
+					data {
+						attributes {
+							title
+							subtitle
+							start
+							slug
+							cover {
+								data {
+									attributes {
+										url
+									}
+								}
+							}
+						}
+					}
+				}
+				links {
+					url
+					plattform
+				}
+			}
+		}
+	}
+}
