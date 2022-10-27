@@ -14,6 +14,7 @@
 		"generate": "houdini generate"
 	},
 	"devDependencies": {
+		"@kitql/graphql-codegen": "^0.5.4",
 		"@kitql/vite-plugin-watch-and-run": "^0.4.2",
 		"@playwright/test": "^1.25.0",
 		"@sveltejs/adapter-auto": "next",
@@ -41,5 +42,9 @@
 		"vite": "^3.1.0-beta.1"
 	},
 	"type": "module",
-	"dependencies": {}
+	"dependencies": {
+		"@kitql/client": "^0.5.12",
+		"sk-auth": "^0.4.1",
+		"svelte-forms": "^2.3.1"
+	}
 }

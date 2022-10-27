@@ -1,3 +1,32 @@
+<script lang="ts">
+	import user from '$lib/user';
+	import { onMount, beforeUpdate } from 'svelte';
+	import { GQL_Me } from '$houdini';
+	import UserMenu from '$lib/UserMenu.svelte';
+	import LoginModal from '$lib/LoginModal.svelte';
+
+	let loading = true;
+
+	onMount(async () => {
+		// Check if 'token' exists in localStorage
+		if (!localStorage.getItem('token')) {
+			loading = false;
+			console.log('No User logged in');
+			return;
+		}
+		console.log('Checking User Session');
+
+		// Fetch the user from strapi
+		const res = await GQL_Me.fetch();
+		console.log('Me: ', res);
+
+		if (res.data) {
+			$user = res.data.me;
+		}
+		loading = false;
+	});
+</script>
+
 <div class="container mx-auto min-h-screen ">
 	<div class="navbar bg-base-100 h-36">
 		<div class="flex-1">
@@ -54,7 +83,6 @@
 			<ul class="menu menu-horizontal p-0">
 				<li><a href="/events">Veranstaltungen</a></li>
 				<li><a href="/mitwirkende">Mitwirkende</a></li>
-
 				<!-- <li tabindex="0">
         <a>
           Parent
@@ -67,9 +95,14 @@
       </li> -->
 				<li><a href="/raum">Räume</a></li>
 			</ul>
+			{#if $user}
+				<UserMenu />
+			{/if}
 		</div>
 	</div>
-	<slot />
+	{#if !loading}
+		<slot />
+	{/if}
 </div>
 
 <footer class="footer p-10 bg-neutral text-neutral-content">
@@ -119,6 +152,9 @@
 		<p class="font-display text-lg font-bold">
 			Zentrum der Fülle<br />Sirnach, TG
 		</p>
+		{#if !$user}
+			<LoginModal />
+		{/if}
 	</div>
 	<div>
 		<span class="footer-title">Social</span>
